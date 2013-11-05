@@ -80,6 +80,7 @@ int main(void)
     // 开始深搜，一开始a，b是空的，c是满的
     dfs(0, 0, c);
 
+    // 之所以搞这么复杂，是因为批判系统多一个空格也不行。。。
     bool space_flag = false;
     for (int i = 0; i != N; ++i) {
         if (c_bucket[i] && space_flag)

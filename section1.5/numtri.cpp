@@ -28,6 +28,8 @@ int main (void)
         for (int j = 0; j <= i; ++j)
             ifile >> tri[i][j];
 
+    // 动态规划解
+    // 从最倒数第二排开始，逐步往上，最后第一层即为最优解
     for (int i = n-2; i >= 0; --i)
         for (int j = 0; j <= i; ++j)
             //tri_1[i][j] += 

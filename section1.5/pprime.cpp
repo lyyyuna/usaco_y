@@ -41,6 +41,8 @@ int main (void)
     
     int begin, end;
     ifile >> begin >> end;
+
+    // 一开始的 5 7 11 比较特殊，直接输出
     if(begin<=5&&5<=end)
         ofile << 5 <<endl;
     if(begin<=7&&7<=end)

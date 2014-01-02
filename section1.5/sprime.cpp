@@ -26,13 +26,11 @@ bool isPrime(int num)
 
 void dfs(int num, int deep)
 {
-    // 递归出口，即为所有位数都搜遍了
-    if (deep > DEEP)
-        return ;
-
     if (isPrime(num)) {
-        if (deep == DEEP)
+        if (deep == DEEP) {
             ofile << num <<endl;
+            return;
+        }
         else {
             // 每次的个位数只可能是 1 3 5 7 9
             // 偶数位不用搜了

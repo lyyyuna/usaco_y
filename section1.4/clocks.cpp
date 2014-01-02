@@ -24,6 +24,8 @@ void mkmove(void)
             movedist[i][*p - 'a'] = 3;
     }
 }*/
+
+// 记录每种方案的旋转
 int movedist[9][9]=
 {3, 3, 0, 3, 3, 0, 0, 0, 0,
  3, 3, 3, 0, 0, 0, 0, 0, 0,
@@ -62,7 +64,7 @@ void solve_dfs(int move[], int k)
     }
 
     // dfs的主要搜索路径
-    for (int rep = 3; rep >= 0; --rep) {
+    for (int rep = 0; rep < 4; ++rep) {
         // 每一个分支顺时针转rep次
         for (int i = 0; i != rep; ++i)
             for (int j = 0; j != 9; ++j)
@@ -78,6 +80,7 @@ void solve_dfs(int move[], int k)
         for (int i = 0; i < rep; ++i)
             for (int j = 0; j != 9; ++j)
                 clocks[j] -= movedist[k][j];
+        move[k] = 0;
     }
 }
 
@@ -91,7 +94,7 @@ int main(void)
     for (int i = 0; i != 9; ++i)
         ifile >> clocks[i];
 
-    int move[9]={0};
+    int move[9]={0}; // 记录每个方案转几次
     solve_dfs(move, 0);
 
     string s="";

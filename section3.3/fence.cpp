@@ -103,3 +103,70 @@ int main(void)
 
     return 0;
 }
+
+/*
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+using namespace std;
+int deg[505];
+int f,map[505][505];
+int MAX=-1;
+int MIN=1<<30;
+int st;
+int path[10000];
+int pn=0;
+void dfs(int u)
+{
+for (int i=MIN; i<=MAX; i++)
+{
+if (map[u][i])
+{
+map[u][i]--;
+map[i][u]--;
+dfs(i);
+}
+}
+path[pn++]=u;
+}
+int main()
+{
+cin>>f;
+memset(map,0,sizeof(map));
+memset(deg,0,sizeof(deg));
+for (int i=1; i<=f; i++)
+{
+int u,v;
+cin>>u>>v;
+if (u>MAX)
+MAX=u;
+if (u<MIN)
+MIN=u;
+if (v>MAX)
+MAX=v;
+if (v<MIN)
+MIN=v;
+map[u][v]++;
+deg[u]++;
+deg[v]++;
+map[v][u]++;
+
+}
+int i;
+for (i=MIN; i<=MAX; i++)
+{
+if (deg[i]%2==1)
+{
+st=i;
+break;
+}
+}
+if (i>MAX)
+st=MIN;
+dfs(st);
+for (int i=pn-1; i>=0; i--)
+cout<<path[i]<<endl;
+system("PAUSE");
+}
+
+*/

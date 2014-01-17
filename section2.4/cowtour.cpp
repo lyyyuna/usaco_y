@@ -13,7 +13,7 @@ const int MAXN = 151;
 const int INFTY = 999999;
 int N;
 int x[MAXN], y[MAXN];
-int parent[MAXN];
+
 double point[MAXN];
 
 double dist[MAXN][MAXN];
@@ -25,28 +25,6 @@ double distance(int x1, int y1, int x2, int y2)
     return ( sqrt( 1.0*(x1-x2)*(x1-x2)+1.0*(y1-y2)*(y1-y2) ) );
 }
 
-int findoriginalP(int x)
-{
-    while (x != parent[x])
-        x = parent[x];
-
-    return x;
-}
-
-void updateParent(int i, int j)
-{
-    // 找到各自的根节点
-    int p1 = findoriginalP(i);
-    int p2 = findoriginalP(j);
-
-    if (p1 == p2)
-        return ;
-    // 谁小谁是根
-    if (p1 < p2)
-        parent[p2] = p1;
-    else
-        parent[p1] = p2;
-}
 
 void Floyd(void)
 {
@@ -75,7 +53,7 @@ void find_solution()
     for (int i = 1; i <= N; ++i)
         for (int j = 1; j <= N; ++j) {
             // INFTY说明不连着
-            if (dist[i][j] == INFTY && parent[i] != parent[j]) {
+            if (dist[i][j] == INFTY) {
                 // 先连i和j
                 double new_dis = distance(x[i], y[i], x[j], y[j]);
                 // 然后加上各自连通区的直径
@@ -100,7 +78,6 @@ int main(void)
     for (int i = 1; i <=N; ++i) {
         ifile >> x[i] >> y[i];
         point[i] = -1;
-        parent[i] = i;
     }
 
     char c;
@@ -114,7 +91,7 @@ int main(void)
             // 如果连接
             else if (c == '1') {
                 // 首先跟新 点i和点j的根节点，
-                updateParent(i, j);
+                // updateParent(i, j);
                 // 算出两者的距离
                 dist[i][j] = distance(x[i], y[i], x[j], y[j]);
             }

@@ -26,7 +26,8 @@ int dfs(int a, int b, int c, int d, int e, int deep)
 {
     if (deep == N)
         return 1;
-
+    
+    // 优化，加速
     int &now = matrix[a][b][c][d][e];
     if (now)
         return now;
